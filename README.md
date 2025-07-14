@@ -124,14 +124,28 @@ tracker = StrongSort(
 
 ---
 
-##  Future Work
+## Future Work and Enhancements
 
-If time/resources permitted:
+While the current implementation performs well on soccer match footage using StrongSORT + YOLOv5 with ReID embeddings, there is ample room for intelligent upgrades. Planned improvements include:
 
-- Fine-tune OSNet on soccer dataset (or use a stronger ReID model).
-- OCR jersey numbers and combine with ReID for stronger identity.
-- Apply temporal smoothing or Kalman filtering on ID confidence.
-- Consider merging ByteTrack + StrongSORT for optimal results.
+- ** Player Metadata Initialization:**  
+  At the beginning of the match, all players from both teams will be registered with their jersey numbers, names, and face images.
 
----
+- ** Face Recognition Per Player:**  
+  A dedicated face recognition model for each player will be used to assign IDs independently of bounding boxes or appearance features.
+
+- **Jersey Number OCR:**  
+  We will integrate an OCR pipeline to detect jersey numbers and match them to player metadata for permanent, interpretable IDs.
+
+- **Frame-wise Player Presence Tracking:**  
+  The system will maintain which players are currently visible and which have temporarily exited the frame.
+
+- **Position Prediction with Velocity:**  
+  We plan to use previous motion vectors (speed + direction) to estimate where a player is likely to appear in the next frame and track them accordingly.
+
+- ** Intelligent Fusion of Cues:**  
+  Multiple modalities—appearance embeddings, jersey number, motion, and face—will be fused using ensemble techniques to enhance robustness.
+
+These ideas aim to evolve the system into a more intelligent, real-time, and reliable player tracking framework adaptable for full-length matches.
+
 
